@@ -1,0 +1,38 @@
+function validateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var nameError = document.getElementById("nameError");
+    var emailError = document.getElementById("emailError");
+    var passwordError = document.getElementById("passwordError");
+    var valid = true;
+
+    nameError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+
+    if (name === "") {
+        nameError.textContent = "Name is required";
+        valid = false;
+    }
+
+    if (email === "") {
+        emailError.textContent = "Email is required";
+        valid = false;
+    } else if (!isValidEmail(email)) {
+        emailError.textContent = "Invalid email format";
+        valid = false;
+    }
+
+    if (password === "") {
+        passwordError.textContent = "Password is required";
+        valid = false;
+    }
+
+    return valid;
+}
+
+function isValidEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
